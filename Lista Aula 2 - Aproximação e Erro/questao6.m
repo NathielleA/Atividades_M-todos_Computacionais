@@ -1,5 +1,8 @@
 function [result] = questao6 (expEuler, x, trueValue, trueError, relativedError eA)
 
+  %Determinar o critério de erro que garante três algarismos significativos
+  eS = percet(0,5 × 102−3)
+  
   expEuler = 1;
   x = 0.5;
 
