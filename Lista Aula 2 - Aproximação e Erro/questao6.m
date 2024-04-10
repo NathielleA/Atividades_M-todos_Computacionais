@@ -1,27 +1,17 @@
-## Copyright (C) 2024 Nathiele
-##
-## This program is free software: you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation, either version 3 of the License, or
-## (at your option) any later version.
-##
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
-##
-## You should have received a copy of the GNU General Public License
-## along with this program.  If not, see <https://www.gnu.org/licenses/>.
+function [result] = questao6 (expEuler, x, trueValue, trueError, relativedError eA)
 
-## -*- texinfo -*-
-## @deftypefn {} {@var{retval} =} questao6 (@var{input1}, @var{input2})
-##
-## @seealso{}
-## @end deftypefn
+  expEuler = 1;
+  x = 0.5;
 
-## Author: Nathiele <Nathiele@DESKTOP-7PQSJJF>
-## Created: 2024-04-09
+  trueValue = 1.648721;
+  exactValue = exp(1)^x;
 
-function retval = questao6 (input1, input2)
+
+  ii = 0;
+  while (abs(estimatedError)<eS)
+    ii = ii + 1;
+    expEuler = expEuler + (x^ii)/factorial(ii);
+    eA =
+  endwhile
 
 endfunction
