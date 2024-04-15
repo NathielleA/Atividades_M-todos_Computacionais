@@ -10,15 +10,24 @@ function [result] = questao6 ()
   exactValue = exp(1)^x;
 
   eA = 1;
-  eT = 0;
+  eT = abs((trueValue - expEuler)/trueValue);
+
+  % Tabela de resultados
+  disp('Iteração | Valor Aproximado | Erro Verdadeiro | Erro Absoluto');
+  fprintf('%9d | %16.8f | %13.8f | %13.8f\n', 0, expEuler, eT, eA);
 
   ii = 0;
   while (abs(eA)>=abs(eS)) %loop até que o erro apriximado seja menor que o critério de erro
     ii = ii + 1;
     prevAprox = expEuler;
-    expEuler = expEuler + (x^ii)/factorial(ii) %adiciona mais um termo
-    eA = abs((expEuler - prevAprox)/expEuler) %calculando o erro aproximado
-    eT = abs((trueValue - expEuler)/trueValue) %calculando o erro verdadeiro
+    expEuler = expEuler + (x^ii)/factorial(ii); %adiciona mais um termo
+    eA = abs((expEuler - prevAprox)/expEuler); %calculando o erro aproximado
+    eT = abs((trueValue - expEuler)/trueValue); %calculando o erro verdadeiro
+
+    %Exibindo resultados na tabela
+    fprintf('%9d | %16.8f | %13.8f | %13.8f\n', 0, expEuler, eT, eA);
   endwhile
+
+
 
 endfunction
