@@ -1,27 +1,55 @@
-## Copyright (C) 2024 Nathiele
-##
-## This program is free software: you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation, either version 3 of the License, or
-## (at your option) any later version.
-##
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
-##
-## You should have received a copy of the GNU General Public License
-## along with this program.  If not, see <https://www.gnu.org/licenses/>.
+function [outputArg1,outputArg2] = questao1(x, a, b)
+    %(raiz, fx, ea, iteração)
 
-## -*- texinfo -*-
-## @deftypefn {} {@var{retval} =} questao1 (@var{input1}, @var{input2})
-##
-## @seealso{}
-## @end deftypefn
+    %Função
+    f = @(x) sin(x) - (x)^2;
 
-## Author: Nathiele <Nathiele@DESKTOP-7PQSJJF>
-## Created: 2024-04-22
+    %Limite de erro (eS)
+    eS = 2/100;
+    eA = 1;
 
-function retval = questao1 (input1, input2)
+    %Definindo o intervalo inicial [a, b]
+    a = 0.5;
+    b = 1;
 
-endfunction
+    %Calculando os valores da função nos limites do intervalo
+    fa = f(a);
+    fb = f(b);
+
+    x0 = (a + b)/2;
+    fx0 = f(x0);
+
+    ii = 0;
+    oldX0 = x0;
+
+    fprintf("Iter |   a   |   f(a)   |   b   |   f(b)   |   r   |   f(r)   |   Ea   |\n");
+    fprintf("%d    %.4f    %.4f    %.4f    %.4f    %.4f    %.4f    %.4f\n", ii, a, fa, b, fb, x0, fx0, eA);
+
+    if ((fa * fb) < 0)
+        while (eA >= eS)
+          ii = ii + 1;
+          x0 = (a + b)/2;
+          fx0 = f(x0);
+
+          if (ii > 1)
+            eA = abs((x0 - oldX0) / x0) * 100;
+          else
+            eA = 1;
+          endif
+
+          fprintf("%d    %.4f    %.4f    %.4f    %.4f    %.4f    %.4f    %.4f\n", ii, a, fa, b, fb, x0, fx0, eA);
+
+          if ((fa * fx0) < 0)
+             b = x0;
+          else if ((fa * fx0) > 0)
+             a = x0;
+          end
+
+          fa = f(a);
+          fb = f(b);
+
+          oldX0 = x0;
+        end
+    end
+
+end
